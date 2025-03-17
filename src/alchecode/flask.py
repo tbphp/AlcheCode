@@ -1,9 +1,11 @@
 import argparse
+import logging
 
 from flask import Flask, request
 
 from alchecode.app import Application
 from config import Config
+from utils.logger import formatter, logger
 
 
 class FlaskServer:
@@ -45,6 +47,11 @@ class FlaskServer:
         )
 
         args = parser.parse_args()
+
+        # 日志处理
+        handler = logging.StreamHandler()
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
 
         # 运行 Flask 应用
         self.app.run(host=args.host, port=args.port)

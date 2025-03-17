@@ -1,3 +1,6 @@
+from venv import logger
+
+
 class Application:
     input: str
     """用户输入"""
@@ -10,4 +13,5 @@ class Application:
         self.is_cli = is_cli
 
     def run(self) -> str:
+        logger.info("Start")
         return self.input
