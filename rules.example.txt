@@ -1,0 +1,4 @@
+# 用户规则示例格式：别名 = 工具名称(可带参数)
+# 例如：
+my_alias = toolname
+tr = translate
