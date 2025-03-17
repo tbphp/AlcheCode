@@ -1,0 +1,54 @@
+[project]
+name = "alchecode"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "tbphp",email = "admin@tbphp.net"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "langchain (>=0.3.20,<0.4.0)",
+    "langchain-openai (>=0.3.8,<0.4.0)",
+    "python-dotenv (>=1.0.1,<2.0.0)",
+]
+
+
+[tool.ruff]
+lint.select = [
+    "E",    # pycodestyle
+    "F",    # pyflakes
+    "I",    # isort
+    "D",    # pydocstyle
+    "D401", # First line should be in imperative mood
+    "T201",
+    "UP",
+]
+lint.ignore = [
+    "UP006",
+    "UP007",
+    # We actually do want to import from typing_extensions
+    "UP035",
+    # Relax the convention by _not_ requiring documentation for every function parameter.
+    "D417",
+    "E501",
+    "D100",
+    "D103",
+    "D104",
+]
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D", "UP"]
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+[tool.poetry]
+packages = [{include = "alchecode", from = "src"}]
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.0"
+mypy = "^1.15.0"
+pytest = "^8.3.5"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
