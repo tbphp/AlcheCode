@@ -167,5 +167,4 @@ uv.lock
 
 # 用户规则文件
 /rules.txt
-/custom_tools/*
-!/custom_tools/__init__.py
+**/tools/*user.py
