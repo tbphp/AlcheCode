@@ -1,6 +1,6 @@
 from venv import logger
 
-from config import Output, State
+from config import State
 
 from .nodes import (
     analyze_node,
@@ -16,14 +16,11 @@ class Application:
     """是否是命令行模式"""
 
     state: State
-
-    output: Output
     """应用状态"""
 
     def __init__(self, input: str, is_cli: bool = False):
         self.is_cli = is_cli
         self.state = State(input=input)
-        self.output = Output()
 
     def run(self) -> str:
         logger.info("Start")

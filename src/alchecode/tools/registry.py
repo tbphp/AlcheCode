@@ -1,5 +1,3 @@
-"""Tool Registry."""
-
 import json
 from typing import LiteralString
 
@@ -7,30 +5,30 @@ from .base import BaseTool
 
 
 class ToolRegistry:
-    """Tool registry."""
+    """工具自动注册器"""
 
     _tools: dict[str, type[BaseTool]] = {}
 
     @classmethod
     def register(cls, tool_class: type[BaseTool]) -> type[BaseTool]:
-        """Register tool class."""
+        """注册工具类"""
         tool_instance = tool_class()
         cls._tools[tool_instance.name] = tool_class
         return tool_class
 
     @classmethod
     def get_tools(cls) -> dict[str, type[BaseTool]]:
-        """Get all tool instances."""
+        """工具类key => value列表"""
         return cls._tools
 
     @classmethod
     def get_tools_list(cls) -> list[BaseTool]:
-        """Get all tool instances."""
+        """获取工具示例列表"""
         return [tool_class() for tool_class in cls._tools.values()]
 
     @classmethod
     def format_tool_examples(cls) -> LiteralString:
-        """Format tools into examples for prompt."""
+        """格式化工具提示词"""
         examples = []
         for i, tool in enumerate(cls.get_tools_list(), 1):
             formatted_schema = json.dumps(

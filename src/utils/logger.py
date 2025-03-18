@@ -3,7 +3,8 @@ import os
 from datetime import datetime
 
 logger = logging.getLogger()
-"""日志"""
+"""日志实例"""
+
 formatter = logging.Formatter(
     fmt="[%(asctime)s] %(levelname)-8s%(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",

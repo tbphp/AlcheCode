@@ -4,7 +4,6 @@ from alchecode.nodes import initial_node
 from config import State
 
 
-# Removed duplicate pytest import
 class TestInitialNode:
     def test_empty_input(self) -> None:
         state = State("")

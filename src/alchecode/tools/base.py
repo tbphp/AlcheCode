@@ -6,48 +6,46 @@ from typing import Any, Pattern
 
 
 class BaseTool(ABC):
-    """Base tool class."""
+    """工具基础类"""
 
     @property
     @abstractmethod
     def name(self) -> str:
-        """Tool name."""
+        """工具名称"""
         pass
 
     @property
     @abstractmethod
     def description(self) -> str:
-        """Tool description."""
+        """工具描述"""
         pass
 
     @property
-    @abstractmethod
     def input_schema(self) -> dict[str, Any]:
-        """Input schema."""
-        pass
+        """输入参数表"""
+        return {}
 
     @property
-    @abstractmethod
     def patterns(self) -> list[Pattern[str]]:
-        """Regular expression patterns."""
-        pass
+        """正则列表"""
+        return []
 
     @property
     def param_validators(self) -> dict[str, Any]:
-        """Parameter validators."""
+        """参数校验"""
         return {}
 
     def extract_params(self, index: int, match: Match[str]) -> dict[str, Any]:
-        """Extract params from match object."""
+        """从匹配对象中提取参数。"""
         return {}
 
     @abstractmethod
     def execute(self, params: dict[str, Any]) -> str:
-        """Execute tool."""
+        """执行工具方法"""
         pass
 
     def match(self, input_text: str) -> tuple[bool, dict[str, Any]]:
-        """Check if input text matches any pattern."""
+        """正则匹配"""
         for i, pattern in enumerate(self.patterns):
             match = pattern.match(input_text)
             if match:

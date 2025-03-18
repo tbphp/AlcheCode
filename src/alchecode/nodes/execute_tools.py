@@ -1,5 +1,3 @@
-"""Execute tools node."""
-
 from config import State
 from utils import logger
 
@@ -7,17 +5,7 @@ from ..tools import ToolRegistry
 
 
 def execute_tools_node(state: State) -> None:
-    """Execute tools node.
-
-    Based on the identified tool type and parameters, calls the corresponding tool to perform operations,
-    and stores the result in state.result.
-
-    Args:
-        state: Current state object, containing tool type and parameters
-
-    Returns:
-        Updated state object, including execution results
-    """
+    """执行工具节点"""
     # 检查是否有指定工具名称
     if not state.tool_name:
         state.errors.append("执行工具时未指定工具名称")

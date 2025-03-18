@@ -12,14 +12,14 @@ from .registry import ToolRegistry
 
 
 def tool(cls: type[BaseTool]) -> type[BaseTool]:
-    """Tool decorator."""
+    """工具装饰器"""
     if not inspect.isclass(cls):
         raise TypeError("@tool装饰器只能用于BaseTool的子类")
     return ToolRegistry.register(cls)
 
 
 def discover_tools(package_path: str = "alchecode.tools") -> None:
-    """Discover tools."""
+    """工具自动发现"""
     package = importlib.import_module(package_path)
     package_file = package.__file__
     if package_file is None:

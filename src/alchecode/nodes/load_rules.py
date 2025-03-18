@@ -1,12 +1,10 @@
-"""Load rules node."""
-
 from pathlib import Path
 
 from config import State
 
 
 def load_rules_node(state: State) -> None:
-    """Load the rules.txt rules."""
+    """加载用户规则节点"""
     try:
         # 加载用户规则
         rule_file = Path("rules.txt")

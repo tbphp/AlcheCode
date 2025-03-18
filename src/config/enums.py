@@ -1,11 +1,14 @@
-"""Management of enumerations used in the application."""
-
 from enum import Enum, auto
 
 
 class StatusEnum(Enum):
-    """Execution status enumeration."""
+    """状态枚举类"""
 
     SUCCESS = auto()
+    """成功"""
+
     ERROR = auto()
+    """错误"""
+
     DIRECT = auto()
+    """LLM直接返回结果"""

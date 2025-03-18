@@ -1,5 +1,3 @@
-"""Input analyzer node for the agent."""
-
 import json
 from typing import Any
 
@@ -14,7 +12,7 @@ from ..tools.registry import ToolRegistry
 
 
 def apply_user_rules(state: State) -> bool:
-    """Apply user-defined rules to the input."""
+    """使用用户规则"""
     input_text = state.input.strip()
 
     if input_text in state.rules:
@@ -31,7 +29,7 @@ def apply_user_rules(state: State) -> bool:
 
 
 def detect_tool_by_regex(input_text: str) -> tuple[str | None, dict[str, Any]]:
-    """Detect tool type and parameters using regex patterns."""
+    """使用正则表达式模式检测工具类型和参数"""
     for tool in ToolRegistry.get_tools_list():
         is_match, params = tool.match(input_text)
         if is_match:
@@ -40,7 +38,7 @@ def detect_tool_by_regex(input_text: str) -> tuple[str | None, dict[str, Any]]:
 
 
 def detect_json_data(input_text: str) -> tuple[bool, dict[str, Any] | None]:
-    """Detect JSON data in the input text."""
+    """检测输入文本中的JSON数据"""
     try:
         input_text = input_text.strip()
         if not (input_text.startswith("{") or input_text.startswith("[")):
@@ -56,7 +54,7 @@ def detect_json_data(input_text: str) -> tuple[bool, dict[str, Any] | None]:
 
 
 def analyze_with_llm(state: State) -> None:
-    """Analyze the input using the LLM model."""
+    """使用LLM分析用户意图"""
     try:
         tool_examples = ToolRegistry.format_tool_examples()
         logger.info(f"Analyzing tool examples:{tool_examples}")
@@ -118,7 +116,7 @@ def analyze_with_llm(state: State) -> None:
 
 
 def validate_and_apply_defaults(state: State) -> None:
-    """Validate tool parameters and apply defaults."""
+    """验证工具参数"""
     # 验证工具是否存在
     tools = ToolRegistry.get_tools()
     if not state.tool_name or state.tool_name not in tools:
@@ -149,13 +147,13 @@ def validate_and_apply_defaults(state: State) -> None:
 
 
 def analyze_node(state: State) -> None:
-    """Analyze user input, identify intent, and extract parameters.
+    """分析节点
 
-    This node implements a multi-level intent recognition strategy:
-    1. First apply user-defined rules
-    2. Use regex for pattern matching
-    3. Perform specific data type detection (such as JSON)
-    4. If the above methods cannot determine intent, use LLM for analysis
+    该节点用于分析用户输入，识别意图并提取参数。
+    该节点实现了多层次的意图识别策略：
+    1. 首先应用用户自定义规则
+    2. 使用正则表达式进行模式匹配
+    3. 如果上述方法无法确定意图，则使用LLM进行分析
     """
     # 第一层：应用用户自定义规则
     apply_user_rules(state)

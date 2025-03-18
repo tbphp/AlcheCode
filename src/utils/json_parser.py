@@ -1,11 +1,8 @@
-"""Parse JSON from markdown content."""
-
 import json
 import re
 from typing import Any
 
 
-# 使用更可靠的方式来匹配JSON
 def find_json_string(text: str) -> str | None:
     stack: list[str] = []
     start: int = -1
@@ -27,7 +24,13 @@ def find_json_string(text: str) -> str | None:
 
 
 def parse_llm_json(content: str) -> Any:
-    """Parse JSON from markdown content."""
+    """从Markdown解析JSON数据
+
+    Args:
+        content (str): 输入的Markdown内容
+    Returns:
+        Any: 解析后的JSON对象
+    """
     # 尝试匹配```json块中的内容
     json_block_pattern = r"```(?:json)?\s*([\s\S]*?)\s*```"
     matches = re.findall(json_block_pattern, content)
