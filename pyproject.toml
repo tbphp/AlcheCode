@@ -17,6 +17,7 @@ dependencies = [
 
 [tool.mypy]
 strict = true
+mypy_path = "$MYPY_CONFIG_FILE_DIR/src"
 
 [tool.ruff]
 lint.select = [
@@ -49,14 +50,23 @@ lint.ignore = [
 "tests/*" = ["D", "UP"]
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
 [tool.poetry]
-packages = [{include = "alchecode", from = "src"}]
+name = "alchecode"
+packages = [
+    {include = "alchecode", from = "src"},
+    {include = "config", from = "src"},
+    {include = "utils", from = "src"},
+]
+
+[tool.poetry.scripts]
+"acode:cli" = "alchecode:cli"
+"acode:api" = "alchecode:api_server"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.11.0"
 mypy = "^1.15.0"
 pytest = "^8.3.5"
-
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

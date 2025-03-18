@@ -1,5 +1,5 @@
 #!/usr/bin/env python
 
-from alchecode import Command
+from alchecode import cli
 
-Command().run()
+cli()

@@ -5,14 +5,14 @@ import pytest
 from utils.json_parser import parse_llm_json
 
 
-def test_parse_plain_json():
+def test_parse_plain_json() -> None:
     """测试解析普通JSON字符串"""
     json_str = '{"name": "test", "value": 123}'
     result = parse_llm_json(json_str)
     assert result == {"name": "test", "value": 123}
 
 
-def test_parse_markdown_json():
+def test_parse_markdown_json() -> None:
     """测试从markdown代码块中解析JSON"""
     markdown_str = """
     这是一些说明文字
@@ -28,7 +28,7 @@ def test_parse_markdown_json():
     assert result == {"name": "test", "value": 123}
 
 
-def test_parse_json_with_comments():
+def test_parse_json_with_comments() -> None:
     """测试从带有额外文本的内容中解析JSON"""
     text_with_json = """
     根据分析结果：
@@ -39,13 +39,13 @@ def test_parse_json_with_comments():
     assert result == {"tool": "example", "confidence": 0.95}
 
 
-def test_parse_invalid_json():
+def test_parse_invalid_json() -> None:
     """测试解析无效JSON时的错误处理"""
     with pytest.raises(json.JSONDecodeError):
         parse_llm_json("这不是一个JSON字符串")
 
 
-def test_parse_multiple_json_blocks():
+def test_parse_multiple_json_blocks() -> None:
     """测试当存在多个JSON块时，使用第一个有效的JSON"""
     multiple_blocks = """
     ```json
@@ -60,7 +60,7 @@ def test_parse_multiple_json_blocks():
     assert result == {"first": True, "input": {"test": 123}}
 
 
-def test_parse_array_json():
+def test_parse_array_json() -> None:
     """测试解析JSON数组"""
     array_str = """
     一些文本
@@ -71,7 +71,7 @@ def test_parse_array_json():
     assert result == [1, 2, 3, {"test": "value", "input": {"test": 123}}]
 
 
-def test_parse_object_json():
+def test_parse_object_json() -> None:
     """测试解析嵌套对象的JSON"""
     nested_object = """
     一些文本

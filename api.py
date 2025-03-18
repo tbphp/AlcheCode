@@ -1,5 +1,5 @@
 #!/usr/bin/env python
 
-from alchecode import FlaskServer
+from alchecode import api_server
 
-FlaskServer().run()
+api_server()

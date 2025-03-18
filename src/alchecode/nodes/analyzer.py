@@ -123,7 +123,7 @@ def validate_and_apply_defaults(state: State) -> None:
     tools = ToolRegistry.get_tools()
     if not state.tool_name or state.tool_name not in tools:
         return
-    tool = tools[state.tool_name]
+    tool = tools[state.tool_name]()
 
     properties = tool.input_schema.get("properties", {})
 
