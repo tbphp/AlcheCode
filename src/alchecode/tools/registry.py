@@ -19,11 +19,6 @@ class ToolRegistry:
         return tool_class
 
     @classmethod
-    def get_tool(cls, tool_name: str) -> type[BaseTool]:
-        """Get tool class by name."""
-        return cls._tools.get(tool_name)
-
-    @classmethod
     def get_tools(cls) -> dict[str, type[BaseTool]]:
         """Get all tool instances."""
         return cls._tools

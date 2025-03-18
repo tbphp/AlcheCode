@@ -6,7 +6,7 @@ from utils import logger
 from ..tools import ToolRegistry
 
 
-def execute_tools_node(state: State):
+def execute_tools_node(state: State) -> None:
     """Execute tools node.
 
     Based on the identified tool type and parameters, calls the corresponding tool to perform operations,

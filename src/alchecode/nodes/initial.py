@@ -18,7 +18,7 @@ def detect_injection(input_str: str) -> bool:
     return any(re.search(p, input_str) for p in patterns)
 
 
-def initial_node(state: State):
+def initial_node(state: State) -> None:
     """Process the input and return the updated state."""
     # 输入验证
     if not state.input.strip():

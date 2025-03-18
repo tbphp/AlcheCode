@@ -28,7 +28,7 @@ class BaseTool(ABC):
 
     @property
     @abstractmethod
-    def patterns(self) -> list[Pattern]:
+    def patterns(self) -> list[Pattern[str]]:
         """Regular expression patterns."""
         pass
 

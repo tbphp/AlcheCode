@@ -5,7 +5,7 @@ from pathlib import Path
 from config import State
 
 
-def load_rules_node(state: State):
+def load_rules_node(state: State) -> None:
     """Load the rules.txt rules."""
     try:
         # 加载用户规则

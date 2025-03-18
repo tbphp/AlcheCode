@@ -5,7 +5,7 @@ from .app import Application
 
 
 class Command:
-    def run(self):
+    def run(self) -> None:
         parser = argparse.ArgumentParser(description="AlcheCode CLI mode")
         parser.add_argument("input", type=str, help="Input string to process")
 

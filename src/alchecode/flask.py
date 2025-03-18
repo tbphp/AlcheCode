@@ -11,14 +11,14 @@ from utils.logger import formatter, logger
 class FlaskServer:
     app: Flask
 
-    def __init__(self):
+    def __init__(self: "FlaskServer") -> None:
         self.app = Flask(Config.app_name)
         self.register_routes()
 
-    def register_routes(self):
+    def register_routes(self) -> None:
         self.app.add_url_rule("/", view_func=self.home)
 
-    def home(self):
+    def home(self) -> dict[str, str]:
         input = (request.get_json(silent=True) or {}).get(
             "input"
         ) or request.values.get("input", "")
@@ -30,7 +30,7 @@ class FlaskServer:
         result = app.run()
         return {"result": result}
 
-    def run(self):
+    def run(self) -> None:
         # 解析命令行参数
         parser = argparse.ArgumentParser(description="AlcheCode API server")
         parser.add_argument(

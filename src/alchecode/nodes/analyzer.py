@@ -55,7 +55,7 @@ def detect_json_data(input_text: str) -> tuple[bool, dict[str, Any] | None]:
         return False, None
 
 
-def analyze_with_llm(state: State):
+def analyze_with_llm(state: State) -> None:
     """Analyze the input using the LLM model."""
     try:
         tool_examples = ToolRegistry.format_tool_examples()
@@ -117,7 +117,7 @@ def analyze_with_llm(state: State):
         state.result = "分析过程中发生意外错误"
 
 
-def validate_and_apply_defaults(state: State):
+def validate_and_apply_defaults(state: State) -> None:
     """Validate tool parameters and apply defaults."""
     # 验证工具是否存在
     tools = ToolRegistry.get_tools()
@@ -128,7 +128,7 @@ def validate_and_apply_defaults(state: State):
     properties = tool.input_schema.get("properties", {})
 
     # 辅助函数：获取参数默认值
-    def get_default(param_name):
+    def get_default(param_name: str) -> Any:
         return properties.get(param_name, {}).get("default", None)
 
     for param_name, prop in properties.items():
@@ -148,7 +148,7 @@ def validate_and_apply_defaults(state: State):
         state.errors.append(f"Invalid parameters reset: {', '.join(invalid_params)}")
 
 
-def analyze_node(state: State):
+def analyze_node(state: State) -> None:
     """Analyze user input, identify intent, and extract parameters.
 
     This node implements a multi-level intent recognition strategy:
