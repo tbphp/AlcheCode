@@ -1,5 +1,3 @@
-"""Node package."""
-
 from .analyzer import analyze_node
 from .execute_tools import execute_tools_node
 from .format_output import format_output_node

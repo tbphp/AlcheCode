@@ -1,5 +1,3 @@
-"""Tools package."""
-
 import importlib
 import inspect
 import os
